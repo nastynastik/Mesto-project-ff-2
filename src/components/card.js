@@ -24,7 +24,7 @@ export function createCard(cardData, deleteCard, handleImageClick) {
     // Добавляем обработчик клика по изображению
     imageElement.addEventListener("click", handleImageClick);
 
-    return { cardElement, likeButton };
+    return cardElement;
 
 }
 
@@ -33,4 +33,3 @@ export const deleteCard = (cardElement) => cardElement.remove();
 export const toggleLike = (likeButton) => {
     likeButton.classList.toggle("card__like-button_is-active");
 };
-console.log(likeButton)
