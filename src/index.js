@@ -1,6 +1,6 @@
 import "./pages/index.css";
 import { initialCards } from "./scripts/cards.js";
-import { createCard, deleteCard, toggleLike } from "./components/card.js";
+import { createCard, deleteCard, toggleLike} from "./components/card.js";
 import { openPopup, closePopup, setPopupListeners } from "./components/modal.js";
 // Дом узлы 
 const placesList = document.querySelector('.places__list'); 
@@ -22,7 +22,7 @@ const profileImage = document.querySelector(".profile__image");
 
 // Вывести карточки на страницу 
 initialCards.forEach((initialCard) => { 
-const resultCard = createCard(initialCard, deleteCard, toggleLike);
+const resultCard = createCard(initialCard, deleteCard);
 placesList.append(resultCard); 
 });
 
