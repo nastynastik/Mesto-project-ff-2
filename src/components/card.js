@@ -1,9 +1,11 @@
+import { handleImageClick } from "/src/index.js";
+import { openPopup, closePopup } from "./modal.js";
 const placesList = document.querySelector(".places__list");
 // Темплейт карточки
 const cardTemplate = document.querySelector("#card-template").content;
 
 // Функция создания карточки
-export function createCard(cardData, deleteCard) {
+export function createCard(cardData, deleteCard, toggleLike, modalOpenPopup) {
   const cardElement = cardTemplate
     .querySelector(".places__item")
     .cloneNode(true);
@@ -21,11 +23,14 @@ export function createCard(cardData, deleteCard) {
 
   likeButton.addEventListener("click", () => toggleLike(likeButton));
 
-  imageElement.addEventListener("click", () => handleImageClick(cardData));
+  imageElement.addEventListener("click", () => {
+    handleImageClick(cardData);
+    modalOpenPopup(imageElement); // Открываем попап при клике на изображение
+  });
 
   return cardElement;
 }
-export function openPopup(popupElement) {
+export function openCardPopup(popupElement) {
   popupElement.classList.add("popup_is-opened");
 
   // Добавляем обработчик события для закрытия попапа
@@ -39,28 +44,18 @@ export function openPopup(popupElement) {
   });
 }
 
-export function closePopup(popupElement) {
-  popupElement.classList.remove("popup_is-opened");
+export function closeCardPopup(popupElement) {
+  if (popupElement) {
+    // Проверяем, что popupElement определен
+    popupElement.classList.remove("popup_is-opened");
+  } else {
+    console.error("Popup element is undefined!");
+  }
 }
 
-export function handleImageClick(cardData) {
-  console.log("Image clicked:", cardData);
-  const imagePopup = document.querySelector(".popup_type_image");
-  const popupImage = imagePopup.querySelector(".popup__image");
-  const popupCaption = imagePopup.querySelector(".popup__caption");
-
-  // Устанавливаем источник и alt текст изображения
-  popupImage.src = cardData.link;
-  popupImage.alt = cardData.name;
-
-  // Устанавливаем подпись
-  popupCaption.textContent = cardData.name;
-
-  // Открываем попап
-  openPopup(imagePopup);
-}
 export const deleteCard = (cardElement) => cardElement.remove();
 
 export const toggleLike = (likeButton) => {
   likeButton.classList.toggle("card__like-button_is-active");
 };
+
