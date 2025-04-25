@@ -9,7 +9,7 @@ const modal = document.getElementById('myModal'); // Получаем DOM эле
 const editPopup = document.querySelector(".popup_type_edit");
 const addCardPopup = document.querySelector(".popup_type_new-card");
 const editButton = document.querySelector(".profile__edit-button");
-const editProfileForm = document.querySelector('.popup__form');
+const editProfileForm = document.querySelector('.popup__form_type_edit');
 const addButton = document.querySelector(".profile__add-button");
 const profileName = document.querySelector(".profile__title");
 const profileJob = document.querySelector(".profile__description");
@@ -100,4 +100,5 @@ initialCards.forEach((initialCard) => {
   placesList.append(resultCard); 
   });
 setPopupListeners(); 
+
 
