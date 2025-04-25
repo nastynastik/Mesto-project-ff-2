@@ -25,11 +25,6 @@ const imagePopup = document.querySelector(".popup_type_image");
 const popupCaption = imagePopup.querySelector(".popup__caption");
 const popupImage = imagePopup.querySelector(".popup__image");
 
-// Вывести карточки на страницу 
-initialCards.forEach((initialCard) => { 
-const resultCard = createCard(initialCard, deleteCard, toggleLike, openPopup);
-placesList.append(resultCard); 
-});
 
 
 // Обработчик открытия попапа редактирования профиля
@@ -73,7 +68,7 @@ function handleAddCardFormSubmit(evt) {
     link: cardUrlInput.value,
   };
   // Создаем новую карточку и добавляем её в список
-  const newCard = createCard(cardData, deleteCard, toggleLike);
+  const newCard = createCard(cardData, deleteCard, toggleLike, handleImageClick);
   placesList.prepend(newCard); // Добавляем новую карточку в начало списка
 
   // Закрываем попап после добавления карточки
@@ -87,22 +82,22 @@ function handleAddCardFormSubmit(evt) {
 
 addCardForm.addEventListener('submit', handleAddCardFormSubmit);
 
-export function handleImageClick(cardData) {
-  console.log("Image clicked:", cardData);
-  
-  if (imagePopup) {
-  
+// Обработчик клика по изображению
+function handleImageClick(cardData) {
   // Устанавливаем источник и alt текст изображения
   popupImage.src = cardData.link;
   popupImage.alt = cardData.name;
 
   // Устанавливаем подпись
   popupCaption.textContent = cardData.name;
-
+  
   // Открываем попап
   openPopup(imagePopup);
-} else {
-  console.error("Image popup not found!");
 }
-}
+// Вывести карточки на страницу 
+initialCards.forEach((initialCard) => { 
+  const resultCard = createCard(initialCard, deleteCard, toggleLike, handleImageClick);
+  placesList.append(resultCard); 
+  });
 setPopupListeners(); 
+
