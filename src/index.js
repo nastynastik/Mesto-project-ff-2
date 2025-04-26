@@ -6,10 +6,10 @@ import { openPopup, closePopup, setPopupListeners } from "./components/modal.js"
 // Дом узлы 
 const placesList = document.querySelector('.places__list'); 
 const modal = document.getElementById('myModal'); // Получаем DOM элемент модального окна
-const editPopup = document.querySelector(".popup_form_type_edit-form");
+const editPopup = document.querySelector(".popup_type_edit");
 const addCardPopup = document.querySelector(".popup_type_new-card");
 const editButton = document.querySelector(".profile__edit-button");
-const editProfileForm = document.querySelector('.popup_type_edit');
+const editProfileForm = document.querySelector('.popup_form_type_edit-form');
 const addButton = document.querySelector(".profile__add-button");
 const profileName = document.querySelector(".profile__title");
 const profileJob = document.querySelector(".profile__description");
@@ -100,4 +100,5 @@ initialCards.forEach((initialCard) => {
   placesList.append(resultCard); 
   });
 setPopupListeners(); 
+
 
