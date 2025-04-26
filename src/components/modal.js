@@ -4,6 +4,9 @@ let openedPopup = null; // Переменная для хранения откр
 export function openPopup(popup) {
   popup.classList.add("popup_is-opened");
   openedPopup = popup;
+
+ // Добавляем обработчик нажатия клавиши Escape
+ document.addEventListener("keydown", handleEscClose);
 }
 
 // Универсальная функция закрытия попапов
@@ -12,6 +15,9 @@ export function closePopup(popup) {
 
   popup.classList.remove("popup_is-opened");
   
+  // Удаляем обработчик нажатия клавиши Escape
+  document.removeEventListener("keydown", handleEscClose);
+
   // Сбрасываем открытую переменную
   openedPopup = null;
 }
@@ -37,7 +43,4 @@ export function setPopupListeners() {
       }
     });
   });
-
-  // Добавляем обработчик нажатия клавиши Escape
-  document.addEventListener("keydown", handleEscClose);
 }
