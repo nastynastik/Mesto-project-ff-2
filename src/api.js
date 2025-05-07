@@ -1,4 +1,3 @@
-
 export const cohortId = "wff-cohort-37";
 export const apiToken = "adfda0ed-ae85-4099-adcc-43a0cb0f2b1e";
 
