@@ -32,6 +32,7 @@ function validatePattern(inputElement) {
     return "";
   }
 
+  
   // Проверка поля на валидность
   export function checkInputValidity(formElement, inputElement, config) {
     if (inputElement.validity.patternMismatch) {
