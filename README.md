@@ -1,1 +1,1 @@
-https://nastynastik.github.io/Mesto-project-ff-2/
+https://nastynastik.github.io/Mesto-project-ff-2
