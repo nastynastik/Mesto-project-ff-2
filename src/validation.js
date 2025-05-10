@@ -22,17 +22,7 @@ export function showInputError(
     errorElement.classList.remove(config.errorClass);
     errorElement.textContent = "";
   }
-  
-// Кастомная проверка по регулярному выражению
-function validatePattern(inputElement) {
-    const pattern = /^[a-zA-Zа-яА-ЯёЁ\s-]+$/;
-    if (!pattern.test(inputElement.value)) {
-      return "Разрешены только латинские, кириллические буквы, знаки дефиса и пробелы";
-    }
-    return "";
-  }
-
-  
+    
   // Проверка поля на валидность
   export function checkInputValidity(formElement, inputElement, config) {
     if (inputElement.validity.patternMismatch) {
