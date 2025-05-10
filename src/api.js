@@ -1,5 +1,6 @@
 export const cohortId = "wff-cohort-37";
 export const apiToken = "adfda0ed-ae85-4099-adcc-43a0cb0f2b1e";
+export const BASE_URL = "https://nomoreparties.co/v1";
 
 // Функция для проверки ответа сервера
 export function checkResponse(res) {
