@@ -1,6 +1,6 @@
 import "./pages/index.css";
 import { initialCards } from "./scripts/cards.js";
-import { createCard } from "./components/card.js";
+import { createCard, toggleLike } from "./components/card.js";
 import { openPopup, closePopup, setPopupListeners } from "./components/modal.js";
 import { enableValidation, clearValidation, showInputError, hideInputError, checkInputValidity, toggleButtonState, setEventListeners } from "./validation.js";
 import { getUserInfo, getCards, updateProfile, addCard, checkResponse, cohortId, apiToken, likeCard, unlikeCard, getUserProfile, updateAvatar, deleteCard as apiDeleteCard } from "./api.js";
@@ -84,11 +84,6 @@ addButton.addEventListener('click', () => {
   cardNameInput.value = ""; // Очищаем поля карточки
   cardUrlInput.value = "";
   clearValidation(addCardForm, config);
-  toggleButtonState(
-    [cardNameInput, cardUrlInput], // Исправьте на поля карточки
-    addCardForm.querySelector(config.submitButtonSelector), 
-    config
-  );
   openPopup(addCardPopup);
 });
 
@@ -101,19 +96,19 @@ Promise.all([getUserInfo(), getCards()])
     // Очищаем контейнер перед добавлением новых карточек
     placesList.innerHTML = '';
 
-    // Добавляем карточки с сервера
-    cards.forEach(card => {
+     // Добавляем карточки с сервера
+     cards.forEach(card => {
       const cardElement = createCard({
-        name: card.name,
-        link: card.link,
-        likes: card.likes,
-        ownerId: card.owner._id,
-        cardId: card._id
-      }, handleDeleteCard, handleLikeClick, handleImageClick);
+          name: card.name,
+          link: card.link,
+          likes: card.likes,
+          ownerId: card.owner._id,
+          cardId: card._id
+      }, handleDeleteCard, handleLikeClick, handleImageClick, userData._id); // Передаем currentUserId
       placesList.append(cardElement);
-    });
-  })
-  .catch(err => console.error('Ошибка загрузки данных:', err));
+  });
+})
+.catch(err => console.error('Ошибка загрузки данных:', err));
 
 
 // Обработчик сохранения данных профиля
@@ -191,10 +186,6 @@ function handleAddCardFormSubmit(evt) {
     renderLoading(false, saveButton, "Создать");
   });
 
-  // Создаем новую карточку и добавляем её в список
-  const newCard = createCard(cardData, handleDeleteCard, toggleLike, handleImageClick);
-  placesList.prepend(newCard); // Добавляем новую карточку в начало списка
-
   // Закрываем попап после добавления карточки
   closePopup(addCardPopup);
   
@@ -258,5 +249,4 @@ avatarForm.addEventListener("submit", (event) => {
       renderLoading(false, avatarSubmitButton, "Сохранить");
     });
 });
-
 
