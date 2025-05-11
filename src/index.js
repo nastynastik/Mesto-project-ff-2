@@ -2,7 +2,7 @@ import "./pages/index.css";
 import { initialCards } from "./scripts/cards.js";
 import { createCard, toggleLike } from "./components/card.js";
 import { openPopup, closePopup, setPopupListeners } from "./components/modal.js";
-import { enableValidation, clearValidation, showInputError, hideInputError, checkInputValidity, toggleButtonState, setEventListeners } from "./validation.js";
+import { enableValidation, clearValidation } from "./validation.js";
 import { getUserInfo, getCards, updateProfile, addCard, checkResponse, cohortId, apiToken, likeCard, unlikeCard, getUserProfile, updateAvatar, deleteCard as apiDeleteCard } from "./api.js";
 
 // Дом узлы 
@@ -249,4 +249,3 @@ avatarForm.addEventListener("submit", (event) => {
       renderLoading(false, avatarSubmitButton, "Сохранить");
     });
 });
-
