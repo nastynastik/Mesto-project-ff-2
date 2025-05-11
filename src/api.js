@@ -12,7 +12,7 @@ export function checkResponse(res) {
 
 // Получение данных пользователя с сервера
 export function getUserInfo() {
-    return fetch(`https://nomoreparties.co/v1/${cohortId}/users/me`, {
+    return fetch(`${BASE_URL}/${cohortId}/users/me`, {
       headers: {
         authorization: apiToken,
       },
@@ -21,7 +21,7 @@ export function getUserInfo() {
 
   // Обновление данных профиля
 export function updateProfile(name, about) {
-    return fetch(`https://nomoreparties.co/v1/${cohortId}/users/me`, {
+    return fetch(`${BASE_URL}/${cohortId}/users/me`, {
       method: "PATCH",
       headers: {
         authorization: apiToken,
@@ -36,7 +36,7 @@ export function updateProfile(name, about) {
 
   // Получение всех карточек
 export function getCards() {
-    return fetch(`https://nomoreparties.co/v1/${cohortId}/cards`, {
+    return fetch(`${BASE_URL}/${cohortId}/cards`, {
       headers: {
         authorization: apiToken,
       },
@@ -45,7 +45,8 @@ export function getCards() {
 
   // Добавление новой карточки функция
 export function addCard(name, link) {
-    return fetch(`https://nomoreparties.co/v1/${cohortId}/cards`, {
+    return fetch(`${BASE_URL}/${cohortId}/cards`
+    , {
       method: "POST",
       headers: {
         authorization: apiToken,
@@ -60,7 +61,7 @@ export function addCard(name, link) {
 
   // Удаление карточки
 export function deleteCard(cardId) {
-    return fetch(`https://nomoreparties.co/v1/${cohortId}/cards/${cardId}`, {
+    return fetch(`${BASE_URL}/${cohortId}/cards/${cardId}`, {
       method: "DELETE",
       headers: {
         authorization: apiToken,
@@ -70,9 +71,7 @@ export function deleteCard(cardId) {
 
   // Функция для постановки лайка
 export function likeCard(cardId) {
-    return fetch(
-      `https://nomoreparties.co/v1/${cohortId}/cards/likes/${cardId}`,
-      {
+    return fetch(`${BASE_URL}/${cohortId}/cards/likes/${cardId}`, {
         method: "PUT",
         headers: {
           authorization: apiToken,
@@ -83,9 +82,7 @@ export function likeCard(cardId) {
 
   // Функция для снятия лайка
 export function unlikeCard(cardId) {
-    return fetch(
-      `https://nomoreparties.co/v1/${cohortId}/cards/likes/${cardId}`,
-      {
+    return fetch(`${BASE_URL}/${cohortId}/cards/likes/${cardId}`, {
         method: "DELETE",
         headers: {
           authorization: apiToken,
@@ -97,7 +94,7 @@ export function unlikeCard(cardId) {
   // Получение данных пользователя
 
 export function getUserProfile(cohortId, apiToken) {
-    return fetch(`https://nomoreparties.co/v1/${cohortId}/users/me`, {
+    return fetch(`${BASE_URL}/${cohortId}/users/me`, {
       method: "GET",
       headers: {
         authorization: apiToken,
@@ -107,7 +104,7 @@ export function getUserProfile(cohortId, apiToken) {
   }
   
   export function updateAvatar(cohortId, apiToken, newAvatarUrl) {
-    return fetch(`https://nomoreparties.co/v1/${cohortId}/users/me/avatar`, {
+    return fetch(`${BASE_URL}/${cohortId}/users/me/avatar`, {
       method: "PATCH",
       headers: {
         authorization: apiToken,
